@@ -2,6 +2,7 @@ import { Divider, IconButton, List, styled, Toolbar } from "@mui/material";
 import { mainListItems } from "../listItems";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MuiDrawer from "@mui/material/Drawer";
+import { IHeaderProps } from "../Header/Header";
 
 const drawerWidth: number = 240;
 
@@ -31,7 +32,9 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-export const Sidebar = ({ open, toggleDrawer }) => {
+export const Sidebar = (props: IHeaderProps) => {
+  const { open, toggleDrawer } = props;
+
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar

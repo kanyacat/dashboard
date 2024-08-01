@@ -1,43 +1,55 @@
-import React from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  FormLabel,
-  Input,
-  Typography,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, Card, CardContent, TextField } from "@mui/material";
 import { DisplayWeather } from "./displayWeather/DisplayWeather";
+import SearchIcon from "@mui/icons-material/Search";
+import { backgrounds } from "../../helpers/backgroundWeather";
 
 export const Weather = () => {
   const [city, setCity] = React.useState("");
   const [formData, setFormData] = React.useState("");
 
-  const onSubmit = (e) => {
+  const [background, setBackground] = useState(0);
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormData(city);
   };
 
   return (
-    <Card>
+    <Card
+      sx={{
+        background: `${backgrounds[background]}`,
+        borderRadius: "1.5rem",
+        maxWidth: "320px",
+      }}
+    >
       <CardContent>
-        <form onSubmit={onSubmit}>
-          <FormLabel>
-            <Typography variant="h6" color="textPrimary" mb={1}>
-              Населённый пункт
-            </Typography>
-          </FormLabel>
-          <Input
-            onChange={(e) => setCity(e.target.value)}
-            aria-label="City"
-            placeholder="Введите город..."
-            sx={{ mr: 1 }}
-          />
-          <Button type="submit" variant="contained">
-            Поиск
-          </Button>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+            <TextField
+              id="outlined-helperText"
+              variant="outlined"
+              onChange={(e) => setCity(e.target.value)}
+              aria-label="City"
+              placeholder="Введите город..."
+              size="small"
+              InputProps={{ sx: { borderRadius: 5, mr: 1 } }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                borderRadius: "100%",
+                padding: "5px",
+                minWidth: "10px",
+                backgroundColor: "#4f4f4f",
+              }}
+            >
+              <SearchIcon />
+            </Button>
+          </Box>
         </form>
-        <DisplayWeather city={formData} />
+        <DisplayWeather city={formData} setBackground={setBackground} />
       </CardContent>
     </Card>
   );
