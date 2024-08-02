@@ -1,34 +1,8 @@
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
-import CloudIcon from "@mui/icons-material/Cloud";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import styled from "@emotion/styled";
-
-const list = [
-  {
-    text: "Overview",
-    icon: (
-      <HomeIcon
-        sx={{
-          color: "#B3B9C7",
-          "&:hover": {
-            color: "#000",
-          },
-        }}
-      />
-    ),
-  },
-  {
-    text: "Weather",
-    icon: <CloudIcon />,
-  },
-  {
-    text: "Currencies",
-    icon: <CurrencyExchangeIcon />,
-  },
-];
+import { sidabarList } from "../../mocks/sidebarList";
 
 const StyledListItemButton = styled(ListItemButton)(() => ({
   borderRadius: "10px",
@@ -49,7 +23,7 @@ export const SidebarList = (
       }}
       primary={"Dashboards"}
     />
-    {list.map((el) => (
+    {sidabarList.map((el) => (
       <StyledListItemButton>
         <ListItemIcon
           sx={{

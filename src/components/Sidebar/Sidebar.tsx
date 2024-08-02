@@ -5,7 +5,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { SidebarList } from "../../SidebarList/SidebarList";
+import { SidebarList } from "../SidebarList/SidebarList";
 import MuiDrawer from "@mui/material/Drawer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
