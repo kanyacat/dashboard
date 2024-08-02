@@ -1,58 +1,46 @@
-import { Divider, IconButton, List, styled, Toolbar } from "@mui/material";
-import { mainListItems } from "../listItems";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import {
+  List,
+  styled,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { SidebarList } from "../../SidebarList/SidebarList";
 import MuiDrawer from "@mui/material/Drawer";
-import { IHeaderProps } from "../Header/Header";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
-const drawerWidth: number = 240;
+const drawerWidth: number = 300;
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})(() => ({
   "& .MuiDrawer-paper": {
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    backgroundColor: "#121621",
+    color: "#e4e4e4",
     boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
   },
 }));
 
-export const Sidebar = (props: IHeaderProps) => {
-  const { open, toggleDrawer } = props;
+export const Sidebar = () => {
+  const matches = useMediaQuery("(min-width:900px)");
 
   return (
-    <Drawer variant="permanent" open={open}>
+    <Drawer variant="permanent" sx={!matches ? { width: 10 } : {}}>
       <Toolbar
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          px: [1],
+          margin: "0 auto",
         }}
       >
-        <IconButton onClick={toggleDrawer}>
-          <ChevronLeftIcon />
-        </IconButton>
+        <DashboardIcon sx={{ mr: "10px", width: "40px", height: "40px" }} />
+        <Typography sx={{ fontSize: "20px", fontWeight: "600" }}>
+          MUI DASHBOARD
+        </Typography>
       </Toolbar>
-      <Divider />
-      <List component="nav">
-        {mainListItems}
-        <Divider sx={{ my: 1 }} />
+      <List component="nav" sx={{ padding: "10px 20px" }}>
+        {SidebarList}
       </List>
     </Drawer>
   );

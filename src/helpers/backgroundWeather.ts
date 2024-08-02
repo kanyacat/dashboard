@@ -14,6 +14,7 @@ export const backgrounds: Record<number, string> = {
   1246: could,
   1273: could,
   1276: could,
+  1153: could,
   1066: snow,
   1069: snow,
   1072: snow,

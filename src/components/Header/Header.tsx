@@ -1,8 +1,12 @@
-import { IconButton, styled, Toolbar, Typography } from "@mui/material";
+import {
+  IconButton,
+  styled,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
-
-const drawerWidth: number = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -10,19 +14,16 @@ interface AppBarProps extends MuiAppBarProps {
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
+  [theme.breakpoints.up("md")]: {
+    zIndex: theme.zIndex.drawer - 1,
+  },
+  backgroundColor: "#fff",
+  color: "#000",
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
   }),
 }));
 
@@ -33,11 +34,17 @@ export interface IHeaderProps {
 
 export const Header = (props: IHeaderProps) => {
   const { open, toggleDrawer } = props;
+
+  const matches = useMediaQuery("(min-width:758px)");
+
   return (
     <AppBar position="absolute" open={open}>
       <Toolbar
         sx={{
-          pr: "24px", // keep right padding when drawer closed
+          pr: "24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "right",
         }}
       >
         <IconButton
@@ -46,8 +53,7 @@ export const Header = (props: IHeaderProps) => {
           aria-label="open drawer"
           onClick={toggleDrawer}
           sx={{
-            marginRight: "36px",
-            ...(open && { display: "none" }),
+            ...(matches && open && { display: "block" }),
           }}
         >
           <MenuIcon />
@@ -57,7 +63,7 @@ export const Header = (props: IHeaderProps) => {
           variant="h6"
           color="inherit"
           noWrap
-          sx={{ flexGrow: 1 }}
+          sx={{ flexGrow: 1, textAlign: "center" }}
         >
           Dashboard
         </Typography>
