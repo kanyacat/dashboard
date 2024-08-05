@@ -1,17 +1,27 @@
 import { Avatar, Box, Divider, IconButton, Typography } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
+import { deleteNotification } from "../../../redux/notifications/notificationsSlice";
+import { useAppDispatch } from "../../../redux/hooks";
 
 interface INotification {
   title: string;
   description: string;
   date: string;
+  id: number;
 }
 
 export const NotificationItem = ({
   title,
   date,
   description,
+  id,
 }: INotification) => {
+  const dispatch = useAppDispatch();
+
+  const handleDeleteItem = () => {
+    dispatch(deleteNotification(id));
+  };
+
   return (
     <>
       <Box
@@ -28,7 +38,7 @@ export const NotificationItem = ({
           <Typography>{description}</Typography>
           <Typography variant="caption">{date}</Typography>
         </Box>
-        <IconButton>
+        <IconButton onClick={handleDeleteItem}>
           <ClearIcon sx={{ color: "#32383e", width: "20px", height: "20px" }} />
         </IconButton>
       </Box>

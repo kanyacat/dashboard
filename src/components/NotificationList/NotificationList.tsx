@@ -5,15 +5,20 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { NotificationItem } from "./NotificationItem/NotificationItem";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import { LightTooltip } from "../LightTooltip/LightTooltip";
-import { notificationList } from "../../mocks/notificationList";
+import { INotifications } from "../../types/notificationsTypes";
+import { useAppSelector } from "../../redux/hooks";
 
 export const NotificationList = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  const notifications = useAppSelector(
+    (state) => state.notifications.notifications
+  );
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -51,19 +56,20 @@ export const NotificationList = () => {
                   <MarkEmailReadIcon />
                 </IconButton>
               </Box>
-              {notificationList.map((note) => (
+              {notifications.map((note: INotifications) => (
                 <NotificationItem
                   key={note.id}
                   title={note.title}
                   date={note.date}
                   description={note.description}
+                  id={note.id}
                 />
               ))}
             </Box>
           }
         >
           <IconButton onClick={handleTooltipOpen} color="inherit">
-            <Badge badgeContent={3} color="primary">
+            <Badge badgeContent={notifications.length} color="primary">
               <NotificationsIcon />
             </Badge>
           </IconButton>

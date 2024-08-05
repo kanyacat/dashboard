@@ -61,6 +61,7 @@ export const AvatarUser = (props: IAvatarUserProps) => {
               {userTooltip.map((tooltip) => (
                 <ListItemButton
                   sx={{ borderRadius: "10px", padding: "2px 3px", mb: "3px" }}
+                  key={Date.now()}
                 >
                   <ListItemIcon>{tooltip.icon}</ListItemIcon>
                   <ListItemText

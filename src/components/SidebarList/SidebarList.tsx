@@ -24,7 +24,7 @@ export const SidebarList = (
       primary={"Dashboards"}
     />
     {sidabarList.map((el) => (
-      <StyledListItemButton>
+      <StyledListItemButton key={el.text}>
         <ListItemIcon
           sx={{
             color: "#B3B9C7",
