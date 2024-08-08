@@ -1,20 +1,21 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import { Weather } from "../../components/Weather/Weather";
 import { Header } from "../../components/Header/Header";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
+import { ChartWeather } from "../../components/Weather/ChartWeather/ChartWeather";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
 
+  const matches = useMediaQuery("(min-width:900px)");
+  const theme = useTheme();
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  const matches = useMediaQuery("(min-width:900px)");
 
   useEffect(() => {
     if (!matches) {
@@ -38,6 +39,7 @@ export default function Dashboard() {
           overflow: "auto",
           pt: "50px",
         }}
+        paddingLeft={"20px"}
       >
         <Box
           sx={
@@ -47,14 +49,34 @@ export default function Dashboard() {
                   opacity: "0.93",
                   filter: "contrast(125%) brightness(3%)",
                   height: "100vh",
+                  alignItems: "start",
                 }
+              : !matches
+              ? { justifyContent: "center" }
               : {}
           }
-          display={"flex"}
         >
-          <Container maxWidth="xs" sx={{ pt: 4, pb: 4, ml: 0 }}>
+          <Typography
+            variant="h1"
+            fontSize={"28px"}
+            pt={"30px"}
+            fontWeight={700}
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+            }}
+          >
+            Weather Forecast
+          </Typography>
+          <Box
+            display={"flex"}
+            alignItems={"start"}
+            flexWrap={"wrap"}
+            gap={"20px"}
+            paddingTop={"20px"}
+          >
             <Weather />
-          </Container>
+            <ChartWeather />
+          </Box>
         </Box>
       </Box>
     </Box>

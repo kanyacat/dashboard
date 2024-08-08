@@ -13,6 +13,7 @@ const lightTheme = createTheme({
     primary: {
       main: "#635bff", // Основной цвет для светлой темы
       light: "#fff",
+      dark: "#222429",
     },
     secondary: {
       main: "#121621", // Второстепенный цвет для светлой темы
@@ -35,6 +36,7 @@ const darkTheme = createTheme({
     primary: {
       main: "#635bff", // Основной цвет для темной темы
       light: "#27273a",
+      dark: "#fff",
     },
     secondary: {
       main: "#1f2433", // Второстепенный цвет для темной темы

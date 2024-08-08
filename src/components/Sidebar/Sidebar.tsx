@@ -1,5 +1,4 @@
 import {
-  IconButton,
   List,
   styled,
   Toolbar,
@@ -9,7 +8,6 @@ import {
 import { SidebarList } from "../SidebarList/SidebarList";
 import MuiDrawer from "@mui/material/Drawer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useRef } from "react";
 
 const drawerWidth: number = 320;
@@ -85,11 +83,11 @@ export const Sidebar = (props: IPropsSidebar) => {
         <Typography sx={{ fontSize: "20px", fontWeight: "600", mr: "15px" }}>
           MUI DASHBOARD
         </Typography>
-        {!matches && (
+        {/* {!matches && (
           <IconButton onClick={() => closeDrawer}>
             <ClearIcon sx={{ width: "30px", height: "30px", color: "#fff" }} />
           </IconButton>
-        )}
+        )} */}
       </Toolbar>
       <List component="nav" sx={{ padding: "10px 20px" }}>
         {SidebarList}

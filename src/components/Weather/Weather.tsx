@@ -22,7 +22,7 @@ export const Weather = () => {
         background:
           weather.current && `${backgrounds[weather.current.condition.code]}`,
         borderRadius: "1.5rem",
-        maxWidth: "320px",
+        maxWidth: "340px",
       }}
     >
       <CardContent>

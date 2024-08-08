@@ -5,6 +5,8 @@ import WavesIcon from "@mui/icons-material/Waves";
 import { useGetWeatherByCityQuery } from "../../../redux/weather/weatherApi";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setWeather } from "../../../redux/weather/weatherSlice";
+import dayjs from "dayjs";
+import { dayWeek } from "../../../helpers/weekTranslator";
 interface IWeatherApiProps {
   city: string;
 }
@@ -130,6 +132,74 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                   </Typography>
                 </Box>
               </Box>
+            </Box>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              gap={"10px"}
+              maxWidth={"299px"}
+              mt={"30px"}
+              pb={"10px"}
+              sx={{
+                overflowX: "scroll",
+                "::-webkit-scrollbar-button": {
+                  width: "60px", //for horizontal scrollbar
+                },
+                "&::-webkit-scrollbar": {
+                  width: "4px",
+                  height: "3px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "transprent",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "#fff20a",
+                  borderRadius: "4px",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            >
+              {data.forecast.forecastday.slice(1).map((day) => {
+                const date = new Date(day.date);
+
+                return (
+                  <Box
+                    key={day.astro.moon_illumination}
+                    padding={"10px"}
+                    borderRadius={"14px"}
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    sx={{
+                      backgroundColor: "rgba(255,255,255,0.5)",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      textAlign={"center"}
+                      fontWeight={600}
+                    >
+                      {dayWeek[dayjs(date).format("dddd")]}
+                    </Typography>
+                    <img
+                      width={"50px"}
+                      height={"50px"}
+                      src={day.day.condition.icon}
+                      alt={day.day.condition.text}
+                    />
+                    <Typography
+                      variant="subtitle1"
+                      textAlign={"center"}
+                      fontWeight={600}
+                    >
+                      {Math.round((day.day.maxtemp_c + day.day.mintemp_c) / 2)}
+                      °C
+                    </Typography>
+                  </Box>
+                );
+              })}
             </Box>
           </Box>
         </CardContent>
