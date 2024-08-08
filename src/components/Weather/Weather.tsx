@@ -35,7 +35,18 @@ export const Weather = () => {
               aria-label="City"
               placeholder="Введите город..."
               size="small"
-              InputProps={{ sx: { borderRadius: 5, mr: 1 } }}
+              InputProps={{
+                sx: {
+                  borderRadius: 5,
+                  mr: 1,
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  pl: "3px",
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    border: "1px solid #121211",
+                  },
+                },
+              }}
             />
             <Button
               type="submit"
@@ -44,14 +55,24 @@ export const Weather = () => {
                 borderRadius: "100%",
                 padding: "5px",
                 minWidth: "10px",
-                backgroundColor: "#4f4f4f",
+                backgroundColor: "#fff",
+                "&:hover": {
+                  backgroundColor: "#121211",
+                },
               }}
             >
-              <SearchIcon />
+              <SearchIcon
+                sx={{
+                  color: "#121211",
+                  "&:hover": {
+                    fill: "#fff",
+                  },
+                }}
+              />
             </Button>
           </Box>
         </form>
-        <DisplayWeather city={formData} />
+        <DisplayWeather city={formData.toLowerCase()} />
       </CardContent>
     </Card>
   );

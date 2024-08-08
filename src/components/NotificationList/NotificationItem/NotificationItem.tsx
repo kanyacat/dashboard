@@ -39,7 +39,7 @@ export const NotificationItem = ({
           <Typography variant="caption">{date}</Typography>
         </Box>
         <IconButton onClick={handleDeleteItem}>
-          <ClearIcon sx={{ color: "#32383e", width: "20px", height: "20px" }} />
+          <ClearIcon sx={{ width: "20px", height: "20px" }} />
         </IconButton>
       </Box>
       <Divider />

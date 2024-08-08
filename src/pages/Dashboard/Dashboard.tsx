@@ -19,6 +19,8 @@ export default function Dashboard() {
   useEffect(() => {
     if (!matches) {
       setOpen(false);
+    } else {
+      setOpen(true);
     }
   }, [matches]);
 
@@ -26,24 +28,34 @@ export default function Dashboard() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Header open={open} toggleDrawer={toggleDrawer} />
-      <Sidebar open={open} />
+      <Sidebar open={open} toggleDrawer={toggleDrawer} />
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          // flexGrow: 1,
+          backgroundColor: (theme) => theme.palette.background.paper,
           height: "100vh",
           width: "100%",
           overflow: "auto",
           pt: "50px",
         }}
       >
-        <Container maxWidth="xs" sx={{ mt: 4, mb: 4, ml: 0 }}>
-          <Weather />
-        </Container>
+        <Box
+          sx={
+            !matches && open
+              ? {
+                  backgroundColor: "#121621",
+                  opacity: "0.93",
+                  filter: "contrast(125%) brightness(3%)",
+                  height: "100vh",
+                }
+              : {}
+          }
+          display={"flex"}
+        >
+          <Container maxWidth="xs" sx={{ pt: 4, pb: 4, ml: 0 }}>
+            <Weather />
+          </Container>
+        </Box>
       </Box>
     </Box>
   );

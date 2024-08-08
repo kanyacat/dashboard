@@ -15,7 +15,7 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
   const dispatch = useAppDispatch();
 
   const { data, error, isLoading } = useGetWeatherByCityQuery(
-    city ? city : "Тверь"
+    city ? city : "тверь"
   );
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
   if (isLoading) {
     return (
       <Box display={"flex"} justifyContent={"center"} mt={"20px"}>
-        <CircularProgress />
+        <CircularProgress color="inherit" />
       </Box>
     );
   }
@@ -52,6 +52,7 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
             flexDirection={"column"}
             alignItems={"center"}
             justifyContent={"center"}
+            color={"#fff"}
           >
             <Box
               display={"flex"}
@@ -64,7 +65,8 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
               />
               <Typography
                 variant="h4"
-                color="textPrimary"
+                color="#fff"
+                fontWeight={"600"}
                 display={"flex"}
                 alignItems={"center"}
                 textAlign={"center"}
@@ -74,7 +76,7 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
               </Typography>
               <Typography
                 variant="h5"
-                color="textPrimary"
+                color="#fff"
                 mb={"40px"}
                 textAlign={"center"}
               >
@@ -89,8 +91,8 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                   <Box display={"flex"} alignItems={"center"}>
                     <WavesIcon />
                     <Typography
-                      variant="h5"
-                      color="textPrimary"
+                      variant="h6"
+                      color="#fff"
                       display={"flex"}
                       alignItems={"center"}
                       ml={"8px"}
@@ -98,7 +100,11 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                       {data.current?.humidity}%
                     </Typography>
                   </Box>
-                  <Typography variant="subtitle1" color="textPrimary">
+                  <Typography
+                    variant="subtitle2"
+                    fontWeight={"400"}
+                    color="#fff"
+                  >
                     Humidity
                   </Typography>
                 </Box>
@@ -106,8 +112,8 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                   <Box display={"flex"} alignItems={"center"}>
                     <AirIcon />
                     <Typography
-                      variant="h5"
-                      color="textPrimary"
+                      variant="h6"
+                      color="#fff"
                       display={"flex"}
                       alignItems={"center"}
                       ml={"8px"}
@@ -115,7 +121,11 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                       {data.current?.wind_kph}
                     </Typography>
                   </Box>
-                  <Typography variant="subtitle1" color="textPrimary">
+                  <Typography
+                    variant="subtitle2"
+                    fontWeight={"400"}
+                    color="#fff"
+                  >
                     Wind speed
                   </Typography>
                 </Box>
