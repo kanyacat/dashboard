@@ -3,15 +3,17 @@ import Box from "@mui/material/Box";
 import { Weather } from "../../components/Weather/Weather";
 import { Header } from "../../components/Header/Header";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
-import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { ChartWeather } from "../../components/Weather/ChartWeather/ChartWeather";
+import { ChanceOfRain } from "../../components/Weather/ChanceOfRain/ChanceOfRain";
+import { Sunriseset } from "../../components/Weather/Sunriseset/Sunriseset";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
 
-  const matches = useMediaQuery("(min-width:900px)");
-  const theme = useTheme();
+  const matches = useMediaQuery("(min-width:1000px)");
+  const matchesSm = useMediaQuery("(max-width:600px)");
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -39,7 +41,7 @@ export default function Dashboard() {
           overflow: "auto",
           pt: "50px",
         }}
-        paddingLeft={"20px"}
+        paddingLeft={matches ? "20px" : "5px"}
       >
         <Box
           sx={
@@ -73,9 +75,28 @@ export default function Dashboard() {
             flexWrap={"wrap"}
             gap={"20px"}
             paddingTop={"20px"}
+            justifyContent={matchesSm ? "center" : ""}
           >
             <Weather />
-            <ChartWeather />
+            <Box
+              display={"flex"}
+              textAlign={"center"}
+              flexDirection={"column"}
+              justifyContent={matchesSm ? "center" : ""}
+              alignItems={"center"}
+              gap={"2px"}
+            >
+              <ChartWeather />
+              <Box
+                display={"flex"}
+                gap={"20px"}
+                flexWrap={"wrap"}
+                justifyContent={"center"}
+              >
+                <ChanceOfRain />
+                <Sunriseset />
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>

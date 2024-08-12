@@ -55,7 +55,7 @@ interface IPropsSidebar {
 export const Sidebar = (props: IPropsSidebar) => {
   const { open, toggleDrawer } = props;
   const drawerRef = useRef(null);
-  const matches = useMediaQuery("(min-width:900px)");
+  const matches = useMediaQuery("(min-width:1000px)");
 
   const closeDrawer = (e: MouseEvent) => {
     //@ts-ignore

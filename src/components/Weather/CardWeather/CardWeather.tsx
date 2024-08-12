@@ -11,7 +11,7 @@ interface IWeatherApiProps {
   city: string;
 }
 
-export const DisplayWeather = (props: IWeatherApiProps) => {
+export const CardWeather = (props: IWeatherApiProps) => {
   const { city } = props;
 
   const dispatch = useAppDispatch();

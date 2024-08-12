@@ -27,6 +27,15 @@ const lightTheme = createTheme({
       paper: "#f5f5f5", // Цвет бумаги для светлой темы
     },
   },
+  breakpoints: {
+    values: {
+      xs: 370,
+      sm: 600,
+      md: 1000,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });
 
 // Настройка темной темы
@@ -48,6 +57,15 @@ const darkTheme = createTheme({
     background: {
       default: "#11111d", // Цвет фона для темной темы
       paper: "#121621", // Цвет бумаги для темной темы
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 370,
+      sm: 600,
+      md: 1000,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });

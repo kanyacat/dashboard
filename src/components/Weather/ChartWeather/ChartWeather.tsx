@@ -10,7 +10,9 @@ export const ChartWeather = () => {
   const [array, setArray] = useState<Date[]>([]);
 
   useEffect(() => {
-    setArray(weather.forecast?.forecastday.map((day) => new Date(day.date)));
+    setArray(
+      weather.forecast?.forecastday[0].hour.map((day) => new Date(day.time))
+    );
   }, [weather]);
 
   return (
@@ -22,16 +24,21 @@ export const ChartWeather = () => {
               weather.current &&
               `${backgrounds[weather.current.condition.code]}`,
             borderRadius: "1.5rem",
-            width: "30rem",
+            width: {
+              sm: "40rem",
+              xs: "90vw",
+            },
+            mb: "10px",
           }}
         >
-          <CardContent sx={{ height: "350px" }}>
+          <CardContent sx={{ height: "290px" }}>
             <Typography
               variant="h6"
               textAlign={"center"}
+              fontWeight={700}
               sx={{ color: "#fff" }}
             >
-              Средняя температура по дням
+              Средняя температура по часам
             </Typography>
             <LineChart
               tooltip={{ trigger: "item" }}
@@ -39,7 +46,7 @@ export const ChartWeather = () => {
               xAxis={[
                 {
                   data: array,
-                  valueFormatter: (date) => dayjs(date).format("D MMM"),
+                  valueFormatter: (date) => dayjs(date).format("HH:mm"),
                   scaleType: "band",
                 },
               ]}
@@ -52,8 +59,8 @@ export const ChartWeather = () => {
                 {
                   data:
                     array.length > 0
-                      ? weather?.forecast?.forecastday.map(
-                          (day) => (day.day.maxtemp_c + day.day.mintemp_c) / 2
+                      ? weather?.forecast?.forecastday[0].hour.map(
+                          (day) => day.temp_c
                         )
                       : [],
                   valueFormatter: (value) =>
@@ -61,6 +68,7 @@ export const ChartWeather = () => {
                 },
               ]}
               sx={{
+                pb: "15px",
                 "& .MuiChartsTooltip-root": {
                   color: "black",
                 },

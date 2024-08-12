@@ -14,7 +14,6 @@ export const ToggleTheme = () => {
     <Box
       sx={{
         display: "flex",
-        // width: "100%",
         alignItems: "center",
         justifyContent: "center",
         color: "text.primary",

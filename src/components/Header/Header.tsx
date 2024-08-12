@@ -33,7 +33,7 @@ export interface IHeaderProps {
 export const Header = (props: IHeaderProps) => {
   const { open, toggleDrawer } = props;
 
-  const matches = useMediaQuery("(min-width:900px)");
+  const matches = useMediaQuery("(min-width:1000px)");
 
   return (
     <AppBar position="absolute">

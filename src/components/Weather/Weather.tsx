@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Card, CardContent, TextField } from "@mui/material";
-import { DisplayWeather } from "./displayWeather/DisplayWeather";
+import { CardWeather } from "./CardWeather/CardWeather";
 import SearchIcon from "@mui/icons-material/Search";
 import { backgrounds } from "../../helpers/backgroundWeather";
 import { useAppSelector } from "../../redux/hooks";
@@ -10,6 +10,8 @@ export const Weather = () => {
   const [formData, setFormData] = React.useState("");
 
   const weather = useAppSelector((state) => state.weather.items);
+
+  console.log(weather);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -72,7 +74,7 @@ export const Weather = () => {
             </Button>
           </Box>
         </form>
-        <DisplayWeather city={formData.toLowerCase()} />
+        <CardWeather city={formData.toLowerCase()} />
       </CardContent>
     </Card>
   );
