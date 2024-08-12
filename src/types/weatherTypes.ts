@@ -1,7 +1,7 @@
 export interface WeatherType {
   location?: Location;
   current?: Current;
-  forecast: Forecast;
+  forecast?: Forecast;
 }
 
 export interface Location {

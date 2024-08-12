@@ -67,7 +67,11 @@ export const ChanceOfRain = () => {
           Вероятность осадков
         </Typography>
         <CircularProgressWithLabel
-          value={weather.forecast?.forecastday[0].day.daily_chance_of_rain}
+          value={
+            weather.forecast
+              ? weather.forecast?.forecastday[0].day.daily_chance_of_rain
+              : 0
+          }
         />
       </CardContent>
     </Card>

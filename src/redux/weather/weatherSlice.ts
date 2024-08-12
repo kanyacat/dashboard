@@ -9,6 +9,7 @@ const initialState: WeatherState = {
   items: {
     location: undefined,
     current: undefined,
+    forecast: undefined,
   },
 };
 

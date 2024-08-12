@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Button, Card, CardContent, TextField } from "@mui/material";
-import { CardWeather } from "./CardWeather/CardWeather";
 import SearchIcon from "@mui/icons-material/Search";
-import { backgrounds } from "../../helpers/backgroundWeather";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
+import { backgrounds } from "../../../helpers/backgroundWeather";
+import { CardWeather } from "../CardWeather/CardWeather";
 
-export const Weather = () => {
+export const WeatherSearch = () => {
   const [city, setCity] = React.useState("");
   const [formData, setFormData] = React.useState("");
 

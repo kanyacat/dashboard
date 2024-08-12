@@ -1,4 +1,5 @@
 import {
+  IconButton,
   List,
   styled,
   Toolbar,
@@ -8,7 +9,7 @@ import {
 import { SidebarList } from "../SidebarList/SidebarList";
 import MuiDrawer from "@mui/material/Drawer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { useRef } from "react";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const drawerWidth: number = 320;
 
@@ -54,21 +55,21 @@ interface IPropsSidebar {
 
 export const Sidebar = (props: IPropsSidebar) => {
   const { open, toggleDrawer } = props;
-  const drawerRef = useRef(null);
+  // const drawerRef = useRef(null);
   const matches = useMediaQuery("(min-width:1000px)");
 
-  const closeDrawer = (e: MouseEvent) => {
-    //@ts-ignore
-    if (!matches && open && !drawerRef.current?.contains(e.target)) {
-      toggleDrawer();
-    }
-  };
+  // const closeDrawer = (e: MouseEvent) => {
+  //   //@ts-ignore
+  //   if (open && !drawerRef.current?.contains(e.target)) {
+  //     toggleDrawer();
+  //   }
+  // };
 
-  document.addEventListener("mousedown", closeDrawer);
+  // document.addEventListener("mousedown", closeDrawer);
 
   return (
     <Drawer
-      ref={drawerRef}
+      // ref={drawerRef}
       variant="permanent"
       open={open}
       sx={!matches ? { width: 10 } : {}}
@@ -83,11 +84,11 @@ export const Sidebar = (props: IPropsSidebar) => {
         <Typography sx={{ fontSize: "20px", fontWeight: "600", mr: "15px" }}>
           MUI DASHBOARD
         </Typography>
-        {/* {!matches && (
-          <IconButton onClick={() => closeDrawer}>
+        {!matches && (
+          <IconButton onClick={toggleDrawer}>
             <ClearIcon sx={{ width: "30px", height: "30px", color: "#fff" }} />
           </IconButton>
-        )} */}
+        )}
       </Toolbar>
       <List component="nav" sx={{ padding: "10px 20px" }}>
         {SidebarList}

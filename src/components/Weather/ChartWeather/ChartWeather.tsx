@@ -11,7 +11,9 @@ export const ChartWeather = () => {
 
   useEffect(() => {
     setArray(
-      weather.forecast?.forecastday[0].hour.map((day) => new Date(day.time))
+      weather.forecast
+        ? weather.forecast?.forecastday[0].hour.map((day) => new Date(day.time))
+        : []
     );
   }, [weather]);
 

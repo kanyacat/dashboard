@@ -6,6 +6,14 @@ export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
 
+const BREAKPOINTS = {
+  xs: 370,
+  sm: 670,
+  md: 1000,
+  lg: 1200,
+  xl: 1536,
+};
+
 // Настройка светлой темы
 const lightTheme = createTheme({
   palette: {
@@ -28,13 +36,7 @@ const lightTheme = createTheme({
     },
   },
   breakpoints: {
-    values: {
-      xs: 370,
-      sm: 600,
-      md: 1000,
-      lg: 1200,
-      xl: 1536,
-    },
+    values: BREAKPOINTS,
   },
 });
 
@@ -60,13 +62,7 @@ const darkTheme = createTheme({
     },
   },
   breakpoints: {
-    values: {
-      xs: 370,
-      sm: 600,
-      md: 1000,
-      lg: 1200,
-      xl: 1536,
-    },
+    values: BREAKPOINTS,
   },
 });
 

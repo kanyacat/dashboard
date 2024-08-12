@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { ChartWeather } from "../../components/Weather/ChartWeather/ChartWeather";
 import { ChanceOfRain } from "../../components/Weather/ChanceOfRain/ChanceOfRain";
 import { Sunriseset } from "../../components/Weather/Sunriseset/Sunriseset";
+import { WeatherSearch } from "../../components/Weather/WeatherSearch/WeatherSearch";
 
 export default function Dashboard() {
   const [open, setOpen] = useState(true);
@@ -41,7 +42,7 @@ export default function Dashboard() {
           overflow: "auto",
           pt: "50px",
         }}
-        paddingLeft={matches ? "20px" : "5px"}
+        paddingLeft={!matchesSm ? "20px" : "5px"}
       >
         <Box
           sx={
@@ -50,7 +51,7 @@ export default function Dashboard() {
                   backgroundColor: "#121621",
                   opacity: "0.93",
                   filter: "contrast(125%) brightness(3%)",
-                  height: "100vh",
+                  height: "200%",
                   alignItems: "start",
                 }
               : !matches
@@ -63,6 +64,7 @@ export default function Dashboard() {
             fontSize={"28px"}
             pt={"30px"}
             fontWeight={700}
+            textAlign={!matchesSm ? "left" : "center"}
             sx={{
               color: (theme) => theme.palette.primary.dark,
             }}
@@ -77,7 +79,7 @@ export default function Dashboard() {
             paddingTop={"20px"}
             justifyContent={matchesSm ? "center" : ""}
           >
-            <Weather />
+            <WeatherSearch />
             <Box
               display={"flex"}
               textAlign={"center"}
