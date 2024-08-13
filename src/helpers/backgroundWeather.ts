@@ -1,7 +1,10 @@
 const sunny = "linear-gradient(180deg, #e4837e,#e2a07f,#dfbf7f)";
-const rain = "linear-gradient(90deg, #7c51ca,#6e4bc3,#4e3cb3)";
-const clould = "linear-gradient(180deg, #97c9f2,#a2cdf1,#c6e3fb)";
-const snow = "linear-gradient(360deg, #c7f2ff,#5cd3ff)";
+const rain =
+  "url('https://www.transparentpng.com/thumb/clouds/9WElwV-white-clouds-effects-picture.png'), linear-gradient(90deg, #7c51ca,#6e4bc3,#4e3cb3)";
+const clould =
+  "url('https://i.pinimg.com/originals/f9/b3/42/f9b3427598b53534d53d03f7cb1ddc7b.png'),linear-gradient(180deg, #97c9f2,#a2cdf1,#c6e3fb)";
+const snow =
+  "url('https://i.pinimg.com/originals/f9/b3/42/f9b3427598b53534d53d03f7cb1ddc7b.png'), linear-gradient(360deg, #c7f2ff,#5cd3ff)";
 
 export const backgrounds: Record<number, string> = {
   1000: sunny,

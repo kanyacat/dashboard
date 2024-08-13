@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import { store } from "./redux/store";
 import { ThemeColorProvider } from "./contexts/ThemeColorContext";
 

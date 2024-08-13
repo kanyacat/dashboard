@@ -161,7 +161,7 @@ export const CardWeather = (props: IWeatherApiProps) => {
                 },
               }}
             >
-              {data.forecast.forecastday.slice(1).map((day) => {
+              {data?.forecast?.forecastday.slice(1).map((day) => {
                 const date = new Date(day.date);
 
                 return (

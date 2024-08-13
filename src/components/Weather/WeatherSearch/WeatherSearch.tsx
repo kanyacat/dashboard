@@ -21,8 +21,8 @@ export const WeatherSearch = () => {
   return (
     <Card
       sx={{
-        background:
-          weather.current && `${backgrounds[weather.current.condition.code]}`,
+        backgroundImage:
+          weather.current && ` ${backgrounds[weather.current.condition.code]}`,
         borderRadius: "1.5rem",
         maxWidth: "340px",
       }}
