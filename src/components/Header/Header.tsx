@@ -26,7 +26,13 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export const Header = ({ open, toggleDrawer }) => {
+export interface IHeaderProps {
+  open: boolean;
+  toggleDrawer: () => void;
+}
+
+export const Header = (props: IHeaderProps) => {
+  const { open, toggleDrawer } = props;
   return (
     <AppBar position="absolute" open={open}>
       <Toolbar
