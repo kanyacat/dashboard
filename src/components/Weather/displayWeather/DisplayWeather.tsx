@@ -1,46 +1,51 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { weatherAPI } from "../../../api/weatherAPI";
-import { WeatherType } from "../../../types/weatherTypes";
+import { useEffect } from "react";
 import { Box, CardContent, CircularProgress, Typography } from "@mui/material";
 import AirIcon from "@mui/icons-material/Air";
 import WavesIcon from "@mui/icons-material/Waves";
+import { useGetWeatherByCityQuery } from "../../../redux/weather/weatherApi";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setWeather } from "../../../redux/weather/weatherSlice";
 interface IWeatherApiProps {
   city: string;
-  setBackground: Dispatch<SetStateAction<number>>;
 }
 
 export const DisplayWeather = (props: IWeatherApiProps) => {
-  const { city, setBackground } = props;
+  const { city } = props;
 
-  const [weather, setWeather] = useState<WeatherType>();
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const { data, error, isLoading } = useGetWeatherByCityQuery(
+    city ? city : "Тверь"
+  );
 
   useEffect(() => {
-    setIsLoading(true);
-
-    const fetchData = async () => {
-      const data = await weatherAPI(city ? city : "Тверь");
-
-      setWeather(data);
-      setBackground(data.current.condition.code);
-
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, [city]);
+    if (data) {
+      dispatch(setWeather(data));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (isLoading) {
     return (
-      <Box display={"flex"} justifyContent={"center"}>
+      <Box display={"flex"} justifyContent={"center"} mt={"20px"}>
         <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box display={"flex"} justifyContent={"center"} mt={"20px"}>
+        <Typography textAlign={"center"} color={"error"}>
+          Произошла ошибка. Введите корректный населённый пункт.
+        </Typography>
       </Box>
     );
   }
 
   return (
     <>
-      {weather && (
+      {data && (
         <CardContent>
           <Box
             display="flex"
@@ -54,20 +59,26 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
               alignItems={"center"}
             >
               <img
-                src={weather.current.condition.icon}
-                alt={weather.current.condition.text}
+                src={data.current?.condition.icon}
+                alt={data.current?.condition.text}
               />
               <Typography
                 variant="h4"
                 color="textPrimary"
                 display={"flex"}
                 alignItems={"center"}
+                textAlign={"center"}
               >
-                {weather?.current.temp_c}
+                {data.current?.temp_c}
                 <span>{"°C"}</span>
               </Typography>
-              <Typography variant="h5" color="textPrimary" mb={"40px"}>
-                {weather.location.country}, {weather.location.name}
+              <Typography
+                variant="h5"
+                color="textPrimary"
+                mb={"40px"}
+                textAlign={"center"}
+              >
+                {data.location?.country}, {data.location?.name}
               </Typography>
               <Box
                 display={"flex"}
@@ -84,7 +95,7 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                       alignItems={"center"}
                       ml={"8px"}
                     >
-                      {weather.current.humidity}%
+                      {data.current?.humidity}%
                     </Typography>
                   </Box>
                   <Typography variant="subtitle1" color="textPrimary">
@@ -101,7 +112,7 @@ export const DisplayWeather = (props: IWeatherApiProps) => {
                       alignItems={"center"}
                       ml={"8px"}
                     >
-                      {weather.current.wind_kph}
+                      {data.current?.wind_kph}
                     </Typography>
                   </Box>
                   <Typography variant="subtitle1" color="textPrimary">

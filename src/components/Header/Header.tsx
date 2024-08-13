@@ -1,12 +1,15 @@
 import {
+  Divider,
   IconButton,
   styled,
   Toolbar,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
+import { NotificationList } from "../NotificationList/NotificationList";
+import { AvatarUser } from "../AvatarUser/AvatarUser";
+import { user } from "../../mocks/user";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -21,10 +24,8 @@ const AppBar = styled(MuiAppBar, {
   },
   backgroundColor: "#fff",
   color: "#000",
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
+  boxShadow: "none",
+  borderBottom: "1px solid #e4e4e4",
 }));
 
 export interface IHeaderProps {
@@ -35,10 +36,10 @@ export interface IHeaderProps {
 export const Header = (props: IHeaderProps) => {
   const { open, toggleDrawer } = props;
 
-  const matches = useMediaQuery("(min-width:758px)");
+  const matches = useMediaQuery("(min-width:900px)");
 
   return (
-    <AppBar position="absolute" open={open}>
+    <AppBar position="absolute">
       <Toolbar
         sx={{
           pr: "24px",
@@ -58,15 +59,15 @@ export const Header = (props: IHeaderProps) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography
-          component="h1"
-          variant="h6"
-          color="inherit"
-          noWrap
-          sx={{ flexGrow: 1, textAlign: "center" }}
-        >
-          Dashboard
-        </Typography>
+        <Toolbar sx={{ flexGrow: 1 }} />
+        <NotificationList />
+        <Divider orientation="vertical" flexItem sx={{ m: "0 20px" }} />
+        <AvatarUser
+          withTooltip={true}
+          name={user.name}
+          email={user.mail}
+          avatar={user.avatar}
+        />
       </Toolbar>
     </AppBar>
   );

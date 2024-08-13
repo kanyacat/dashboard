@@ -1,5 +1,7 @@
+import { Provider } from "react-redux";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { store } from "./redux/store";
 
 const theme = createTheme({
   typography: {
@@ -12,9 +14,11 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Dashboard />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Dashboard />
+      </ThemeProvider>
+    </Provider>
   );
 }
 

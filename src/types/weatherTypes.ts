@@ -1,6 +1,6 @@
 export interface WeatherType {
-  location: Location;
-  current: Current;
+  location?: Location;
+  current?: Current;
 }
 
 export interface Location {

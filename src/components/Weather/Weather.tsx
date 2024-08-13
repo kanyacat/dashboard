@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, Card, CardContent, TextField } from "@mui/material";
 import { DisplayWeather } from "./displayWeather/DisplayWeather";
 import SearchIcon from "@mui/icons-material/Search";
 import { backgrounds } from "../../helpers/backgroundWeather";
+import { useAppSelector } from "../../redux/hooks";
 
 export const Weather = () => {
   const [city, setCity] = React.useState("");
   const [formData, setFormData] = React.useState("");
 
-  const [background, setBackground] = useState(0);
+  const weather = useAppSelector((state) => state.weather.items);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +19,8 @@ export const Weather = () => {
   return (
     <Card
       sx={{
-        background: `${backgrounds[background]}`,
+        background:
+          weather.current && `${backgrounds[weather.current.condition.code]}`,
         borderRadius: "1.5rem",
         maxWidth: "320px",
       }}
@@ -49,7 +51,7 @@ export const Weather = () => {
             </Button>
           </Box>
         </form>
-        <DisplayWeather city={formData} setBackground={setBackground} />
+        <DisplayWeather city={formData} />
       </CardContent>
     </Card>
   );
