@@ -1,4 +1,5 @@
 import {
+  IconButton,
   List,
   styled,
   Toolbar,
@@ -8,8 +9,9 @@ import {
 import { SidebarList } from "../SidebarList/SidebarList";
 import MuiDrawer from "@mui/material/Drawer";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import ClearIcon from "@mui/icons-material/Clear";
 
-const drawerWidth: number = 300;
+const drawerWidth: number = 320;
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -24,7 +26,7 @@ const Drawer = styled(MuiDrawer, {
       duration: theme.transitions.duration.enteringScreen,
     }),
     boxSizing: "border-box",
-    backgroundColor: "#121621",
+    backgroundColor: theme.palette.secondary.main,
     color: "#e4e4e4",
     ...(!open && {
       overflowX: "hidden",
@@ -33,34 +35,60 @@ const Drawer = styled(MuiDrawer, {
         duration: theme.transitions.duration.leavingScreen,
       }),
       width: theme.spacing(0),
-      [theme.breakpoints.up("sm")]: {
-        //закрытое состояние
+      [theme.breakpoints.up("md")]: {
         width: theme.spacing(0),
       },
+      left: "-1px",
     }),
+  },
+  "&.MuiDrawer-docked": {
+    [theme.breakpoints.down("md")]: {
+      width: "0",
+    },
   },
 }));
 
 interface IPropsSidebar {
   open: boolean;
+  toggleDrawer: () => void;
 }
 
 export const Sidebar = (props: IPropsSidebar) => {
-  const { open } = props;
+  const { open, toggleDrawer } = props;
+  // const drawerRef = useRef(null);
+  const matches = useMediaQuery("(min-width:1000px)");
 
-  const matches = useMediaQuery("(min-width:900px)");
+  // const closeDrawer = (e: MouseEvent) => {
+  //   //@ts-ignore
+  //   if (open && !drawerRef.current?.contains(e.target)) {
+  //     toggleDrawer();
+  //   }
+  // };
+
+  // document.addEventListener("mousedown", closeDrawer);
 
   return (
-    <Drawer variant="permanent" open={open} sx={!matches ? { width: 10 } : {}}>
+    <Drawer
+      // ref={drawerRef}
+      variant="permanent"
+      open={open}
+      sx={!matches ? { width: 10 } : {}}
+    >
       <Toolbar
         sx={{
-          margin: "0 auto",
+          marginLeft: "2px",
+          marginTop: "10px",
         }}
       >
         <DashboardIcon sx={{ mr: "10px", width: "40px", height: "40px" }} />
-        <Typography sx={{ fontSize: "20px", fontWeight: "600" }}>
+        <Typography sx={{ fontSize: "20px", fontWeight: "600", mr: "15px" }}>
           MUI DASHBOARD
         </Typography>
+        {!matches && (
+          <IconButton onClick={toggleDrawer}>
+            <ClearIcon sx={{ width: "30px", height: "30px", color: "#fff" }} />
+          </IconButton>
+        )}
       </Toolbar>
       <List component="nav" sx={{ padding: "10px 20px" }}>
         {SidebarList}

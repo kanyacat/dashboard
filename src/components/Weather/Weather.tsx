@@ -1,58 +1,55 @@
-import React from "react";
-import { Box, Button, Card, CardContent, TextField } from "@mui/material";
-import { DisplayWeather } from "./displayWeather/DisplayWeather";
-import SearchIcon from "@mui/icons-material/Search";
-import { backgrounds } from "../../helpers/backgroundWeather";
-import { useAppSelector } from "../../redux/hooks";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { WeatherSearch } from "./WeatherSearch/WeatherSearch";
+import { ChartWeather } from "./ChartWeather/ChartWeather";
+import { ChanceOfRain } from "./ChanceOfRain/ChanceOfRain";
+import { Sunriseset } from "./Sunriseset/Sunriseset";
 
 export const Weather = () => {
-  const [city, setCity] = React.useState("");
-  const [formData, setFormData] = React.useState("");
-
-  const weather = useAppSelector((state) => state.weather.items);
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormData(city);
-  };
+  const matchesSm = useMediaQuery("(max-width:600px)");
 
   return (
-    <Card
-      sx={{
-        background:
-          weather.current && `${backgrounds[weather.current.condition.code]}`,
-        borderRadius: "1.5rem",
-        maxWidth: "320px",
-      }}
-    >
-      <CardContent>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-            <TextField
-              id="outlined-helperText"
-              variant="outlined"
-              onChange={(e) => setCity(e.target.value)}
-              aria-label="City"
-              placeholder="Введите город..."
-              size="small"
-              InputProps={{ sx: { borderRadius: 5, mr: 1 } }}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                borderRadius: "100%",
-                padding: "5px",
-                minWidth: "10px",
-                backgroundColor: "#4f4f4f",
-              }}
-            >
-              <SearchIcon />
-            </Button>
+    <>
+      <Typography
+        variant="h1"
+        fontSize={"28px"}
+        pt={"30px"}
+        fontWeight={700}
+        textAlign={!matchesSm ? "left" : "center"}
+        sx={{
+          color: (theme) => theme.palette.primary.dark,
+        }}
+      >
+        Weather Forecast
+      </Typography>
+      <Box
+        display={"flex"}
+        alignItems={"start"}
+        flexWrap={"wrap"}
+        gap={"20px"}
+        paddingTop={"20px"}
+        justifyContent={matchesSm ? "center" : ""}
+      >
+        <WeatherSearch />
+        <Box
+          display={"flex"}
+          textAlign={"center"}
+          flexDirection={"column"}
+          justifyContent={matchesSm ? "center" : ""}
+          alignItems={"center"}
+          gap={"2px"}
+        >
+          <ChartWeather />
+          <Box
+            display={"flex"}
+            gap={"20px"}
+            flexWrap={"wrap"}
+            justifyContent={"center"}
+          >
+            <ChanceOfRain />
+            <Sunriseset />
           </Box>
-        </form>
-        <DisplayWeather city={formData} />
-      </CardContent>
-    </Card>
+        </Box>
+      </Box>
+    </>
   );
 };

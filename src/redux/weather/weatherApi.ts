@@ -10,7 +10,7 @@ export const weatherApi = createApi({
   }),
   endpoints: (builder) => ({
     getWeatherByCity: builder.query<WeatherType, string>({
-      query: (city) => `forecast.json?key=${API_KEY}&q=${city}`,
+      query: (city) => `forecast.json?key=${API_KEY}&q=${city}}&days=7&aqi=no`,
     }),
   }),
 });

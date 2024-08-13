@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { NotificationList } from "../NotificationList/NotificationList";
 import { AvatarUser } from "../AvatarUser/AvatarUser";
 import { user } from "../../mocks/user";
+import { ToggleTheme } from "../ToggleTheme/ToggleTheme";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -18,14 +19,10 @@ interface AppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  [theme.breakpoints.up("md")]: {
-    zIndex: theme.zIndex.drawer - 1,
-  },
-  backgroundColor: "#fff",
-  color: "#000",
+  zIndex: theme.zIndex.drawer - 1,
+  backgroundColor: theme.palette.background.default,
+  color: theme.palette.text.primary,
   boxShadow: "none",
-  borderBottom: "1px solid #e4e4e4",
 }));
 
 export interface IHeaderProps {
@@ -36,7 +33,7 @@ export interface IHeaderProps {
 export const Header = (props: IHeaderProps) => {
   const { open, toggleDrawer } = props;
 
-  const matches = useMediaQuery("(min-width:900px)");
+  const matches = useMediaQuery("(min-width:1000px)");
 
   return (
     <AppBar position="absolute">
@@ -60,6 +57,8 @@ export const Header = (props: IHeaderProps) => {
           <MenuIcon />
         </IconButton>
         <Toolbar sx={{ flexGrow: 1 }} />
+        <ToggleTheme />
+
         <NotificationList />
         <Divider orientation="vertical" flexItem sx={{ m: "0 20px" }} />
         <AvatarUser
@@ -69,6 +68,7 @@ export const Header = (props: IHeaderProps) => {
           avatar={user.avatar}
         />
       </Toolbar>
+      <Divider />
     </AppBar>
   );
 };

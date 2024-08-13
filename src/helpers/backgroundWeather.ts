@@ -1,27 +1,59 @@
-const sunny = "linear-gradient(180deg, #fe8140, #fed04f)";
-const could = "linear-gradient(180deg, #c7c7c7, #e3e3e3, #ededed)";
-const snow = "linear-gradient(360deg, #c7f2ff,#5cd3ff)";
-const thunder = "linear-gradient(180deg, #3b2070,#606eb1,#9ebdea)";
+const sunny = "linear-gradient(180deg, #e4837e,#e2a07f,#dfbf7f)";
+const rain =
+  "url('https://www.transparentpng.com/thumb/clouds/9WElwV-white-clouds-effects-picture.png'), linear-gradient(90deg, #7c51ca,#6e4bc3,#4e3cb3)";
+const clould =
+  "url('https://i.pinimg.com/originals/f9/b3/42/f9b3427598b53534d53d03f7cb1ddc7b.png'),linear-gradient(180deg, #97c9f2,#a2cdf1,#c6e3fb)";
+const snow =
+  "url('https://i.pinimg.com/originals/f9/b3/42/f9b3427598b53534d53d03f7cb1ddc7b.png'), linear-gradient(360deg, #c7f2ff,#5cd3ff)";
 
 export const backgrounds: Record<number, string> = {
   1000: sunny,
-  1003: could,
-  1006: could,
-  1009: could,
-  1030: could,
-  1063: could,
-  1240: could,
-  1243: could,
-  1246: could,
-  1153: could,
+  1003: clould,
+  1006: clould,
+  1009: clould,
+  1030: clould,
+  1135: clould,
+  1153: clould,
+  1063: rain,
+  1087: rain,
+  1159: rain,
+  1152: rain,
+  1273: rain,
+  1276: rain,
+  1279: rain,
+  1282: rain,
+  1180: rain,
+  1183: rain,
+  1186: rain,
+  1189: rain,
+  1192: rain,
+  1195: rain,
+  1240: rain,
+  1243: rain,
+  1246: rain,
+  1249: rain,
+  1252: rain,
   1066: snow,
   1069: snow,
   1072: snow,
   1114: snow,
   1117: snow,
-  1087: thunder,
-  1273: thunder,
-  1276: thunder,
-  1279: thunder,
-  1282: thunder,
+  1147: snow,
+  1168: snow,
+  1171: snow,
+  1198: snow,
+  1201: snow,
+  1204: snow,
+  1207: snow,
+  1210: snow,
+  1213: snow,
+  1216: snow,
+  1219: snow,
+  1222: snow,
+  1225: snow,
+  1237: snow,
+  1255: snow,
+  1258: snow,
+  1261: snow,
+  1264: snow,
 };
