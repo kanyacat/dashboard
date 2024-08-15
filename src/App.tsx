@@ -1,15 +1,11 @@
-import { Provider } from "react-redux";
-import Dashboard from "./pages/Dashboard";
-import { store } from "./redux/store";
-import { ThemeColorProvider } from "./contexts/ThemeColorContext";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { Providers } from "./providers/Providers";
 
 function App() {
   return (
-    <Provider store={store}>
-      <ThemeColorProvider>
-        <Dashboard />
-      </ThemeColorProvider>
-    </Provider>
+    <Providers>
+      <Dashboard />
+    </Providers>
   );
 }
 

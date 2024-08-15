@@ -1,17 +1,9 @@
-import {
-  Badge,
-  Box,
-  ClickAwayListener,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Badge, ClickAwayListener, IconButton } from "@mui/material";
 import { useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { NotificationItem } from "./NotificationItem/NotificationItem";
-import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
-import { LightTooltip } from "../LightTooltip/LightTooltip";
-import { INotifications } from "../../types/notificationsTypes";
+import { CustomTooltip } from "../CustomTooltip/CustomTooltip";
 import { useAppSelector } from "../../redux/hooks";
+import { NotificationListContent } from "./NotificationListContent/NotificationListContent";
 
 export const NotificationList = () => {
   const [open, setOpen] = useState(false);
@@ -31,7 +23,7 @@ export const NotificationList = () => {
   return (
     <ClickAwayListener onClickAway={handleTooltipClose}>
       <div>
-        <LightTooltip
+        <CustomTooltip
           PopperProps={{
             disablePortal: true,
           }}
@@ -41,39 +33,14 @@ export const NotificationList = () => {
           disableHoverListener
           disableTouchListener
           placement="bottom-start"
-          title={
-            <Box sx={{ padding: "15px" }}>
-              <Box
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                gap={"50px"}
-              >
-                <Typography variant="h6" sx={{ mb: "10px" }}>
-                  Notifications
-                </Typography>
-                <IconButton color="inherit" sx={{ mb: "5px" }}>
-                  <MarkEmailReadIcon />
-                </IconButton>
-              </Box>
-              {notifications.map((note: INotifications) => (
-                <NotificationItem
-                  key={note.id}
-                  title={note.title}
-                  date={note.date}
-                  description={note.description}
-                  id={note.id}
-                />
-              ))}
-            </Box>
-          }
+          title={<NotificationListContent notifications={notifications} />}
         >
           <IconButton onClick={handleTooltipOpen} color="inherit">
             <Badge badgeContent={notifications.length} color="primary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
-        </LightTooltip>
+        </CustomTooltip>
       </div>
     </ClickAwayListener>
   );

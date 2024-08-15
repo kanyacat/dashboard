@@ -1,6 +1,6 @@
 import { styled, Tooltip, tooltipClasses, TooltipProps } from "@mui/material";
 
-export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
+export const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
