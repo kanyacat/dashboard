@@ -2,7 +2,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import styled from "@emotion/styled";
-import { sidabarList } from "../../mocks/sidebarList";
+import { sidebarList } from "../../mocks/sidebarList";
 
 const StyledListItemButton = styled(ListItemButton)(() => ({
   borderRadius: "10px",
@@ -23,15 +23,11 @@ export const SidebarList = (
       }}
       primary={"Dashboards"}
     />
-    {sidabarList.map((el) => (
+    {sidebarList.map((el) => (
       <StyledListItemButton key={el.text}>
         <ListItemIcon
           sx={{
             color: "#B3B9C7",
-            //не работает, надо что-то придумать
-            "&:hover": {
-              color: "#fff",
-            },
           }}
         >
           {el.icon}

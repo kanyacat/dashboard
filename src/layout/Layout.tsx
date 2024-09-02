@@ -4,9 +4,10 @@ import { Header } from "../components/Header/Header";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Weather } from "../components/Weather/Weather";
+import { ChildrenProps } from "../types/childrenProps";
+import { DarkBackground, LayoutMain } from "./styled";
 
-export default function Dashboard() {
+export const Layout = ({ children }: ChildrenProps) => {
   const [open, setOpen] = useState(true);
 
   const matches = useMediaQuery("(min-width:1000px)");
@@ -29,36 +30,17 @@ export default function Dashboard() {
       <CssBaseline />
       <Header open={open} toggleDrawer={toggleDrawer} />
       <Sidebar open={open} toggleDrawer={toggleDrawer} />
-      <Box
+      <LayoutMain
         component="main"
         sx={{
           backgroundColor: (theme) => theme.palette.background.paper,
-          height: "100vh",
-          width: "100%",
-          overflow: "auto",
-          pt: "50px",
-          pb: "50px",
         }}
-        paddingLeft={!matchesSm ? "20px" : "5px"}
+        padding={!matchesSm ? "0 20px" : "0 5px"}
       >
-        <Box
-          sx={
-            !matches && open
-              ? {
-                  backgroundColor: "#121621",
-                  opacity: "0.93",
-                  filter: "contrast(125%) brightness(3%)",
-                  height: "200%",
-                  alignItems: "start",
-                }
-              : !matches
-              ? { justifyContent: "center" }
-              : {}
-          }
-        >
-          <Weather />
-        </Box>
-      </Box>
+        <DarkBackground matches={matches} open={open}>
+          {children}
+        </DarkBackground>
+      </LayoutMain>
     </Box>
   );
-}
+};

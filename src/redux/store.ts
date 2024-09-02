@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import notificationsReducer from "./notifications/notificationsSlice";
 import weatherReducer from "./weather/weatherSlice";
 import { weatherApi } from "./weather/weatherApi";
-import { currenciesApi } from "./currencies/currenciesApi";
+import { newsApi } from "./news/newsApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
@@ -10,13 +10,10 @@ export const store = configureStore({
     notifications: notificationsReducer,
     weather: weatherReducer,
     [weatherApi.reducerPath]: weatherApi.reducer,
-    [currenciesApi.reducerPath]: currenciesApi.reducer,
+    [newsApi.reducerPath]: newsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
-      weatherApi.middleware,
-      currenciesApi.middleware
-    ),
+    getDefaultMiddleware().concat(weatherApi.middleware, newsApi.middleware),
 });
 
 setupListeners(store.dispatch);

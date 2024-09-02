@@ -1,8 +1,8 @@
 import HomeIcon from "@mui/icons-material/Home";
 import CloudIcon from "@mui/icons-material/Cloud";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 
-export const sidabarList = [
+export const sidebarList = [
   {
     text: "Overview",
     icon: (
@@ -21,7 +21,7 @@ export const sidabarList = [
     icon: <CloudIcon />,
   },
   {
-    text: "Currencies",
-    icon: <CurrencyExchangeIcon />,
+    text: "News",
+    icon: <NewspaperIcon />,
   },
 ];

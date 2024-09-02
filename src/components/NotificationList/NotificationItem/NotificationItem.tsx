@@ -1,7 +1,8 @@
-import { Avatar, Box, Divider, IconButton, Typography } from "@mui/material";
+import { Avatar, Divider, IconButton, Typography } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { deleteNotification } from "../../../redux/notifications/notificationsSlice";
 import { useAppDispatch } from "../../../redux/hooks";
+import { NotificationItemWrapper } from "./styled";
 
 interface INotification {
   title: string;
@@ -24,24 +25,17 @@ export const NotificationItem = ({
 
   return (
     <>
-      <Box
-        component="section"
-        sx={{ p: 2 }}
-        display={"grid"}
-        gridTemplateColumns={"40px 1fr 35px"}
-        alignItems={"flex-start"}
-        gap="20px"
-      >
+      <NotificationItemWrapper component="section">
         <Avatar alt={title} />
-        <Box>
+        <div>
           <Typography fontWeight={600}>{title}</Typography>
           <Typography>{description}</Typography>
           <Typography variant="caption">{date}</Typography>
-        </Box>
+        </div>
         <IconButton onClick={handleDeleteItem}>
           <ClearIcon sx={{ width: "20px", height: "20px" }} />
         </IconButton>
-      </Box>
+      </NotificationItemWrapper>
       <Divider />
     </>
   );
